@@ -26,12 +26,28 @@ setInterval (function(){
 	document.getElementById("ADim6").innerText = Math.floor(dims[5]);
 	document.getElementById("ADim7").innerText = Math.floor(dims[6]);
 	document.getElementById("ADim8").innerText = Math.floor(dims[7]);
-  	document.getElementById("tick").innerText = tickspeed.toFixed(3);
-  	document.getElementById("tickCost").innerText = tickCost;
-  	points += (dims[0]/20)*dimMult[0]*tickspeed;
-  	for (let i = 1; i < 8; i++) {
- 	   dims[i-1] += (dims[i]/20)*dimMult[i]*tickspeed;
-  	}
+  	document.getElementById("PurDim1").innerText = purDims[0];
+	document.getElementById("PurDim2").innerText = purDims[1];
+ 	document.getElementById("PurDim3").innerText = purDims[2];
+ 	document.getElementById("PurDim4").innerText = purDims[3];
+ 	document.getElementById("PurDim5").innerText = purDims[4];
+  	document.getElementById("PurDim6").innerText = purDims[5];
+        document.getElementById("PurDim7").innerText = purDims[6];
+ 	document.getElementById("PurDim8").innerText = purDims[7];
+  document.getElementById("mul1").innerText = dimMult[0];
+  document.getElementById("mul2").innerText = dimMult[1];
+  document.getElementById("mul3").innerText = dimMult[2];
+  document.getElementById("mul4").innerText = dimMult[3];
+  document.getElementById("mul5").innerText = dimMult[4];
+  document.getElementById("mul6").innerText = dimMult[5];
+  document.getElementById("mul7").innerText = dimMult[6];
+  document.getElementById("mul8").innerText = dimMult[7];
+  document.getElementById("tick").innerText = tickspeed.toFixed(3);
+  document.getElementById("tickCost").innerText = tickCost;
+  points += (dims[0]/20)*dimMult[0]*tickspeed;
+  for (let i = 1; i < 8; i++) {
+ 	  dims[i-1] += (dims[i]/20)*dimMult[i]*tickspeed;
+  }
 },50);
 
 function buyADim(dim){
