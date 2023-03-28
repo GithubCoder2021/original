@@ -3,9 +3,12 @@ var costs = [10,100,10000,1e6,1e9,1e13,1e18,1e24];
 var dims = [0,0,0,0,0,0,0,0];
 var purDims = [0,0,0,0,0,0,0,0];
 var dimMult = [1,1,1,1,1,1,1,1];
+var boostDimMult = [1,1,1,1,1,1,1,1];
 var costInc = [1000,10000,100000,1e6,1e8,1e10,1e12,1e15];
 var tickspeed = 1;
 var tickCost = 1000;
+var dimShifts = 0;
+var dimBoostReq = 10;
 
 setInterval (function(){
 	document.getElementById("points").innerText = points.toFixed(1);
@@ -31,22 +34,22 @@ setInterval (function(){
  	document.getElementById("PurDim3").innerText = purDims[2];
  	document.getElementById("PurDim4").innerText = purDims[3];
  	document.getElementById("PurDim5").innerText = purDims[4];
-  	document.getElementById("PurDim6").innerText = purDims[5];
-        document.getElementById("PurDim7").innerText = purDims[6];
+  document.getElementById("PurDim6").innerText = purDims[5];
+   document.getElementById("PurDim7").innerText = purDims[6];
  	document.getElementById("PurDim8").innerText = purDims[7];
-  document.getElementById("mul1").innerText = dimMult[0];
-  document.getElementById("mul2").innerText = dimMult[1];
-  document.getElementById("mul3").innerText = dimMult[2];
-  document.getElementById("mul4").innerText = dimMult[3];
-  document.getElementById("mul5").innerText = dimMult[4];
-  document.getElementById("mul6").innerText = dimMult[5];
-  document.getElementById("mul7").innerText = dimMult[6];
-  document.getElementById("mul8").innerText = dimMult[7];
+  document.getElementById("mul1").innerText = dimMult[0]*boostDimMult[0];
+  document.getElementById("mul2").innerText = dimMult[1]*boostDimMult[1];
+  document.getElementById("mul3").innerText = dimMult[2]*boostDimMult[2];
+  document.getElementById("mul4").innerText = dimMult[3]*boostDimMult[3];
+  document.getElementById("mul5").innerText = dimMult[4]*boostDimMult[4];
+  document.getElementById("mul6").innerText = dimMult[5]*boostDimMult[5];
+  document.getElementById("mul7").innerText = dimMult[6]*boostDimMult[6];
+  document.getElementById("mul8").innerText = dimMult[7]*boostDimMult[7];
   document.getElementById("tick").innerText = tickspeed.toFixed(3);
   document.getElementById("tickCost").innerText = tickCost;
-  points += (dims[0]/20)*dimMult[0]*tickspeed;
+  points += (dims[0]/20)*dimMult[0]*tickspeed*boostDimMult[0];
   for (let i = 1; i < 8; i++) {
- 	  dims[i-1] += (dims[i]/20)*dimMult[i]*tickspeed;
+ 	  dims[i-1] += (dims[i]/20)*dimMult[i]*tickspeed*boostDimMult[i];
   }
 },50);
 
@@ -71,3 +74,184 @@ function tickBuy(){
     	tickCost *= 10;
     }
 }
+
+setInterval (function(){
+	if (dimShifts >= 1){
+  	document.getElementById("5").style.display = "inline-block";
+  } else{
+  	document.getElementById("5").style.display = "none";
+  }
+  if (dimShifts >= 2){
+  	document.getElementById("6").style.display = "inline";
+  } else{
+  	document.getElementById("6").style.display = "none";
+  }
+  if (dimShifts >= 3){
+  	document.getElementById("7").style.display = "inline";
+  } else{
+  	document.getElementById("7").style.display = "none";
+  }
+  if (dimShifts >= 4){
+  	document.getElementById("8").style.display = "inline";
+  } else{
+  	document.getElementById("8").style.display = "none";
+  }
+},50);
+
+function dimShift(){
+	if (dimShifts == 0){
+  	if (dims[3] >= 10) {
+    	dimShifts++;
+      boostDimMult[0] *= 2;
+      document.getElementById("dimShiftReq").innerText = "Req: 20 5th Dimensions";
+      points = 10;
+ costs = [10,100,10000,1e6,1e9,1e13,1e18,1e24];
+ dims = [0,0,0,0,0,0,0,0];
+ purDims = [0,0,0,0,0,0,0,0];
+ dimMult = [1,1,1,1,1,1,1,1];
+ boostDimMult = [1,1,1,1,1,1,1,1];
+ tickspeed = 1;
+ tickCost = 1000;
+    }
+  } 
+  if (dimShifts == 1){
+  	if (dims[4] >= 10) {
+    	dimShifts++;
+      boostDimMult[0] *= 2;
+      boostDimMult[1] *= 2;
+      document.getElementById("dimShiftReq").innerText = "Req: 10 6th Dimensions";
+      points = 10;
+ costs = [10,100,10000,1e6,1e9,1e13,1e18,1e24];
+ dims = [0,0,0,0,0,0,0,0];
+ purDims = [0,0,0,0,0,0,0,0];
+ dimMult = [1,1,1,1,1,1,1,1];
+ boostDimMult = [1,1,1,1,1,1,1,1];
+ tickspeed = 1;
+ tickCost = 1000;
+    }
+  } 
+  if (dimShifts == 2){
+  	if (dims[5] >= 10) {
+    	dimShifts++;
+      boostDimMult[0] *= 2;
+      boostDimMult[1] *= 2;
+      boostDimMult[2] *= 2;
+      document.getElementById("dimShiftReq").innerText = "Req: 10 7th Dimensions";
+      points = 10;
+ costs = [10,100,10000,1e6,1e9,1e13,1e18,1e24];
+ dims = [0,0,0,0,0,0,0,0];
+ purDims = [0,0,0,0,0,0,0,0];
+ dimMult = [1,1,1,1,1,1,1,1];
+ boostDimMult = [1,1,1,1,1,1,1,1];
+ tickspeed = 1;
+ tickCost = 1000;
+    }
+  } 
+  if (dimShifts == 3){
+  	if (dims[6] >= 10) {
+    	dimShifts++;
+      boostDimMult[0] *= 2;
+      boostDimMult[1] *= 2;
+      boostDimMult[2] *= 2;
+      boostDimMult[3] *= 2;
+      document.getElementById("dimShiftReq").innerText = "Req: 10 8th Dimensions";
+      points = 10;
+ costs = [10,100,10000,1e6,1e9,1e13,1e18,1e24];
+ dims = [0,0,0,0,0,0,0,0];
+ purDims = [0,0,0,0,0,0,0,0];
+ dimMult = [1,1,1,1,1,1,1,1];
+ boostDimMult = [1,1,1,1,1,1,1,1];
+ tickspeed = 1;
+ tickCost = 1000;
+    }
+  } 
+  if (dimShifts == 4){
+  	if (dims[7] >= 10) {
+    	dimShifts++;
+      boostDimMult[0] *= 2;
+      boostDimMult[1] *= 2;
+      boostDimMult[2] *= 2;
+      boostDimMult[3] *= 2;
+      boostDimMult[4] *= 2;
+      dimBoostReq += 15;
+      document.getElementById("dimShiftReq").innerText = "Req: " + dimBoostReq + " 8th Dimensions";
+      points = 10;
+ costs = [10,100,10000,1e6,1e9,1e13,1e18,1e24];
+ dims = [0,0,0,0,0,0,0,0];
+ purDims = [0,0,0,0,0,0,0,0];
+ dimMult = [1,1,1,1,1,1,1,1];
+ boostDimMult = [1,1,1,1,1,1,1,1];
+ tickspeed = 1;
+ tickCost = 1000;
+    }
+  } 
+  if (dimShifts == 5){
+  	if (dims[7] >= dimBoostReq) {
+    	dimShifts++;
+      boostDimMult[0] *= 2;
+      boostDimMult[1] *= 2;
+      boostDimMult[2] *= 2;
+      boostDimMult[3] *= 2;
+      boostDimMult[4] *= 2;
+      boostDimMult[5] *= 2;
+      dimBoostReq += 15;
+      document.getElementById("dimShiftReq").innerText = "Req: " + dimBoostReq + " 8th Dimensions";
+      points = 10;
+ costs = [10,100,10000,1e6,1e9,1e13,1e18,1e24];
+ dims = [0,0,0,0,0,0,0,0];
+ purDims = [0,0,0,0,0,0,0,0];
+ dimMult = [1,1,1,1,1,1,1,1];
+ boostDimMult = [1,1,1,1,1,1,1,1];
+ tickspeed = 1;
+ tickCost = 1000;
+    }
+  }
+  if (dimShifts == 6){
+  	if (dims[7] >= dimBoostReq) {
+    	dimShifts++;
+      boostDimMult[0] *= 2;
+      boostDimMult[1] *= 2;
+      boostDimMult[2] *= 2;
+      boostDimMult[3] *= 2;
+      boostDimMult[4] *= 2;
+      boostDimMult[5] *= 2;
+      boostDimMult[6] *= 2;
+      dimBoostReq += 15;
+      document.getElementById("dimShiftReq").innerText = "Req: " + dimBoostReq + " 8th Dimensions";
+      points = 10;
+ costs = [10,100,10000,1e6,1e9,1e13,1e18,1e24];
+ dims = [0,0,0,0,0,0,0,0];
+ purDims = [0,0,0,0,0,0,0,0];
+ dimMult = [1,1,1,1,1,1,1,1];
+ boostDimMult = [1,1,1,1,1,1,1,1];
+ tickspeed = 1;
+ tickCost = 1000;
+    }
+  }
+  if (dimShifts >= 7){
+  	if (dims[7] >= dimBoostReq) {
+    	dimShifts++;
+      boostDimMult[0] *= 2;
+      boostDimMult[1] *= 2;
+      boostDimMult[2] *= 2;
+      boostDimMult[3] *= 2;
+      boostDimMult[4] *= 2;
+      boostDimMult[5] *= 2;
+      boostDimMult[6] *= 2;
+      boostDimMult[7] *= 2;
+      dimBoostReq += 15;
+      document.getElementById("dimShiftReq").innerText = "Req: " + dimBoostReq + " 8th Dimensions";
+      points = 10;
+ costs = [10,100,10000,1e6,1e9,1e13,1e18,1e24];
+ dims = [0,0,0,0,0,0,0,0];
+ purDims = [0,0,0,0,0,0,0,0];
+ dimMult = [1,1,1,1,1,1,1,1];
+ boostDimMult = [1,1,1,1,1,1,1,1];
+ tickspeed = 1;
+ tickCost = 1000;
+    }
+  }
+ 
+}
+
+ 
