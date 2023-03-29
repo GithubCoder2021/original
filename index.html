@@ -10,7 +10,7 @@
     <h1>You have <span id="points">10</span> Originality Points</h1>
     <h2>You are getting <span id="pps">1</span> OP per second</h2>
     <h3>Tickspeed: <span id="tick">1</span>/sec</h3>
-    <button onclick="tickBuy()">Multiply Tickspeed by x1.125: <span id="tickCost">1000</span></button>
+    <button onclick="tickBuy()">Multiply Tickspeed by x<span id="tickMult">1.125</span>: <span id="tickCost">1000</span></button>
 <ul>
    <li><p>1st Original Dimensions: <span id="ADim1">0</span> (<span id="PurDim1">0</span>) x<span id="mul1">1</span></p> <button onclick="buyADim(0)">Cost: <span id="ADimCost1">0</span></button></li>
    <li><p>2nd Original Dimensions: <span id="ADim2">0</span> (<span id="PurDim2">0</span>) x<span id="mul2">1</span></p> <button onclick="buyADim(1)">Cost: <span id="ADimCost2">0</span></button></li>
@@ -24,7 +24,7 @@
   <p id="dimShiftReq">Req: 10 4th Dims</p>
   <button onclick="dimShift()">Dimension Boost</button>
   <p id="galaxyReq">Req: 60 8th Dims</p>
-  <button onclick="galaxy()">Original Galaxy: Reset for a tickspeed boost</button>
+  <button onclick="galaxy()">Original Galaxy: Reset for a 20% tickspeed boost</button>
 </center>
 <script src="goof.js"></script>
 </body>
