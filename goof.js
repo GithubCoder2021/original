@@ -48,7 +48,7 @@ setInterval(function() {
   document.getElementById("mul7").innerText = dimMult[6] * boostDimMult[6];
   document.getElementById("mul8").innerText = dimMult[7] * boostDimMult[7];
   document.getElementById("galaxyReq").innerText = "Req " + galaxyReq + " 8th Dimensions";
-  document.getElementById("tick").innerText = (tickspeed * (galaxies / 10)).toFixed(3);
+  document.getElementById("tick").innerText =(tickspeed * ((galaxies / 10)+1)).toFixed(3);
   document.getElementById("tickCost").innerText = tickCost;
   points += (dims[0] / 20) * dimMult[0] * (tickspeed * ((galaxies / 10)+1)) * boostDimMult[0];
   for (let i = 1; i < 8; i++) {
@@ -251,7 +251,7 @@ function dimShift() {
 
 
 function galaxy() {
-  if (dims[8] >= galaxyReq) {
+  if (dims[7] >= galaxyReq) {
     points = 10;
     costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
     dims = [0, 0, 0, 0, 0, 0, 0, 0];
