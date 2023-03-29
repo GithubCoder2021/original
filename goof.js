@@ -7,6 +7,7 @@ var boostDimMult = [1, 1, 1, 1, 1, 1, 1, 1];
 var costInc = [1000, 10000, 100000, 1e6, 1e8, 1e10, 1e12, 1e15];
 var tickspeed = 1;
 var tickCost = 1000;
+var tickMult = 1.125;
 var dimShifts = 0;
 var dimBoostReq = 10;
 var galaxyReq = 60;
@@ -48,11 +49,14 @@ setInterval(function() {
   document.getElementById("mul7").innerText = dimMult[6] * boostDimMult[6];
   document.getElementById("mul8").innerText = dimMult[7] * boostDimMult[7];
   document.getElementById("galaxyReq").innerText = "Req " + galaxyReq + " 8th Dimensions";
-  document.getElementById("tick").innerText =(tickspeed * ((galaxies / 10)+1)).toFixed(3);
+  document.getElementById("tick").innerText =tickspeed.toFixed(3);
+
+
+document.getElementById("tickMult").innerText =(tickMult * ((galaxies / 5)+1)).toFixed(3);
   document.getElementById("tickCost").innerText = tickCost;
-  points += (dims[0] / 20) * dimMult[0] * (tickspeed * ((galaxies / 10)+1)) * boostDimMult[0];
+  points += (dims[0] / 20) * dimMult[0] * (tickspeed * ((galaxies / 5)+1)) * boostDimMult[0];
   for (let i = 1; i < 8; i++) {
-    dims[i - 1] += (dims[i] / 20) * dimMult[i] * (tickspeed * ((galaxies / 50)+1)) * boostDimMult[i];
+    dims[i - 1] += (dims[i] / 20) * dimMult[i] * (tickspeed * ((galaxies / 5)+1)) * boostDimMult[i];
   }
 }, 50);
 
@@ -73,7 +77,7 @@ function buyADim(dim) {
 function tickBuy() {
   if (points >= tickCost) {
     points -= tickCost;
-    tickspeed *= 1.125;
+    tickspeed *= tickMult * ((galaxies / 5)+1);
     tickCost *= 10;
   }
 }
@@ -263,5 +267,6 @@ function galaxy() {
     dimShifts = 0;
     dimBoostReq = 10;
     galaxyReq += 30;
+    galaxies++;
   }
 }
