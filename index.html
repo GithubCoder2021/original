@@ -7,6 +7,10 @@
 </head>
 <body>
 <center>
+<div id="win">
+	<h2>Congrats for winning the game with 1.8e308 points! More coming soon</h2>
+</div>
+<div id="preInf">
     <h1>You have <span id="points">10</span> Originality Points</h1>
     <h2>You are getting <span id="pps">1</span> OP per second</h2>
     <h3>Tickspeed: <span id="tick">1</span>/sec</h3>
@@ -24,8 +28,14 @@
   <p id="dimShiftReq">Req: 10 4th Dims</p>
   <button onclick="dimShift()">Dimension Boost</button>
   <p id="galaxyReq">Req: 60 8th Dims</p>
-  <button onclick="galaxy()">Original Galaxy: Reset for a 20% tickspeed boost</button>
+  <button onclick="galaxy()">Original Galaxy: Reset for a 50% tickspeed boost</button>
+</div>
+<div id="inf">
+	<h1>Oh noes. You became too original and died due to an excess amount of originality<h1>
+	<button onclick="goInf()">Infinity</button>
+</div>
 </center>
 <script src="goof.js"></script>
+<script src="inf.js"></script>
 </body>
 </html>
