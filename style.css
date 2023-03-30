@@ -1,8 +1,15 @@
 body{
 	font-family: monospace;
 }
+
 ul{
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+}
+
+button{
+	color: black;
+	padding: 20px 30px;
+	border: blue solid 2px;
 }
