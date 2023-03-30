@@ -1,21 +1,21 @@
 var points = 10;
-var costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
+var costs = [10, 100, 10000, 1e6, 1e8, 1e10, 1e14, 1e16];
 var dims = [0, 0, 0, 0, 0, 0, 0, 0];
 var purDims = [0, 0, 0, 0, 0, 0, 0, 0];
 var dimMult = [1, 1, 1, 1, 1, 1, 1, 1];
-var boostDimMult = [1, 1, 1, 1, 1, 1, 1, 1];
-var costInc = [1000, 10000, 100000, 1e6, 1e8, 1e10, 1e12, 1e15];
+var boostDimMult = [1,1,1,1,1,1,1,1];
+var costInc = [100, 1000, 10000, 100000, 1e7, 1e9, 1e10, 1e11];
 var tickspeed = 1;
 var tickCost = 1000;
 var tickMult = 1.125;
 var dimShifts = 0;
 var dimBoostReq = 10;
-var galaxyReq = 60;
+var galaxyReq = 30;
 var galaxies = 0;
 
 setInterval(function() {
   document.getElementById("points").innerText = points.toFixed(1);
-  document.getElementById("pps").innerText = Math.floor(dims[0] * dimMult[0] * tickspeed);
+  document.getElementById("pps").innerText = Math.floor(dims[0] * dimMult[0] * tickspeed * boostDimMult[0]);
   document.getElementById("ADimCost1").innerText = costs[0];
   document.getElementById("ADimCost2").innerText = costs[1];
   document.getElementById("ADimCost3").innerText = costs[2];
@@ -52,11 +52,11 @@ setInterval(function() {
   document.getElementById("tick").innerText =tickspeed.toFixed(3);
 
 
-document.getElementById("tickMult").innerText =(tickMult * ((galaxies / 5)+1)).toFixed(3);
+document.getElementById("tickMult").innerText =(tickMult * ((galaxies / 2)+1)).toFixed(3);
   document.getElementById("tickCost").innerText = tickCost;
-  points += (dims[0] / 20) * dimMult[0] * (tickspeed * ((galaxies / 5)+1)) * boostDimMult[0];
+  points += (dims[0] / 20) * dimMult[0] * tickspeed * boostDimMult[0];
   for (let i = 1; i < 8; i++) {
-    dims[i - 1] += (dims[i] / 20) * dimMult[i] * (tickspeed * ((galaxies / 5)+1)) * boostDimMult[i];
+    dims[i - 1] += (dims[i] / 20) * dimMult[i] * tickspeed * boostDimMult[i];
   }
 }, 50);
 
@@ -77,7 +77,7 @@ function buyADim(dim) {
 function tickBuy() {
   if (points >= tickCost) {
     points -= tickCost;
-    tickspeed *= tickMult * ((galaxies / 5)+1);
+    tickspeed *= tickMult * ((galaxies / 2)+1);
     tickCost *= 10;
   }
 }
@@ -110,7 +110,7 @@ function dimShift() {
     if (dims[3] >= 10) {
       dimShifts++;
       boostDimMult[0] *= 2;
-      document.getElementById("dimShiftReq").innerText = "Req: 20 5th Dimensions";
+      document.getElementById("dimShiftReq").innerText = "Req: 10 5th Dimensions";
       points = 10;
       costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
       dims = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -127,7 +127,7 @@ function dimShift() {
       boostDimMult[1] *= 2;
       document.getElementById("dimShiftReq").innerText = "Req: 10 6th Dimensions";
       points = 10;
-      costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
+      costs = [10, 100, 10000, 1e6, 1e8, 1e10, 1e14, 1e16];
       dims = [0, 0, 0, 0, 0, 0, 0, 0];
       purDims = [0, 0, 0, 0, 0, 0, 0, 0];
       dimMult = [1, 1, 1, 1, 1, 1, 1, 1];
@@ -143,7 +143,7 @@ function dimShift() {
       boostDimMult[2] *= 2;
       document.getElementById("dimShiftReq").innerText = "Req: 10 7th Dimensions";
       points = 10;
-      costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
+      costs = [10, 100, 10000, 1e6, 1e8, 1e10, 1e14, 1e16];
       dims = [0, 0, 0, 0, 0, 0, 0, 0];
       purDims = [0, 0, 0, 0, 0, 0, 0, 0];
       dimMult = [1, 1, 1, 1, 1, 1, 1, 1];
@@ -160,7 +160,7 @@ function dimShift() {
       boostDimMult[3] *= 2;
       document.getElementById("dimShiftReq").innerText = "Req: 10 8th Dimensions";
       points = 10;
-      costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
+      costs = [10, 100, 10000, 1e6, 1e8, 1e10, 1e14, 1e16];
       dims = [0, 0, 0, 0, 0, 0, 0, 0];
       purDims = [0, 0, 0, 0, 0, 0, 0, 0];
       dimMult = [1, 1, 1, 1, 1, 1, 1, 1];
@@ -176,10 +176,10 @@ function dimShift() {
       boostDimMult[2] *= 2;
       boostDimMult[3] *= 2;
       boostDimMult[4] *= 2;
-      dimBoostReq += 15;
+      dimBoostReq += 10;
       document.getElementById("dimShiftReq").innerText = "Req: " + dimBoostReq + " 8th Dimensions";
       points = 10;
-      costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
+      costs = [10, 100, 10000, 1e6, 1e8, 1e10, 1e14, 1e16];
       dims = [0, 0, 0, 0, 0, 0, 0, 0];
       purDims = [0, 0, 0, 0, 0, 0, 0, 0];
       dimMult = [1, 1, 1, 1, 1, 1, 1, 1];
@@ -196,10 +196,10 @@ function dimShift() {
       boostDimMult[3] *= 2;
       boostDimMult[4] *= 2;
       boostDimMult[5] *= 2;
-      dimBoostReq += 15;
+      dimBoostReq += 10;
       document.getElementById("dimShiftReq").innerText = "Req: " + dimBoostReq + " 8th Dimensions";
       points = 10;
-      costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
+      costs = [10, 100, 10000, 1e6, 1e8, 1e10, 1e14, 1e16];
       dims = [0, 0, 0, 0, 0, 0, 0, 0];
       purDims = [0, 0, 0, 0, 0, 0, 0, 0];
       dimMult = [1, 1, 1, 1, 1, 1, 1, 1];
@@ -220,7 +220,7 @@ function dimShift() {
       dimBoostReq += 15;
       document.getElementById("dimShiftReq").innerText = "Req: " + dimBoostReq + " 8th Dimensions";
       points = 10;
-      costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
+      costs = [10, 100, 10000, 1e6, 1e8, 1e10, 1e14, 1e16];
       dims = [0, 0, 0, 0, 0, 0, 0, 0];
       purDims = [0, 0, 0, 0, 0, 0, 0, 0];
       dimMult = [1, 1, 1, 1, 1, 1, 1, 1];
@@ -242,7 +242,7 @@ function dimShift() {
       dimBoostReq += 15;
       document.getElementById("dimShiftReq").innerText = "Req: " + dimBoostReq + " 8th Dimensions";
       points = 10;
-      costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
+      costs =[10, 100, 10000, 1e6, 1e8, 1e10, 1e14, 1e16];
       dims = [0, 0, 0, 0, 0, 0, 0, 0];
       purDims = [0, 0, 0, 0, 0, 0, 0, 0];
       dimMult = [1, 1, 1, 1, 1, 1, 1, 1];
@@ -257,7 +257,7 @@ function dimShift() {
 function galaxy() {
   if (dims[7] >= galaxyReq) {
     points = 10;
-    costs = [10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24];
+    costs = [10, 100, 10000, 1e6, 1e8, 1e10, 1e14, 1e16];
     dims = [0, 0, 0, 0, 0, 0, 0, 0];
     purDims = [0, 0, 0, 0, 0, 0, 0, 0];
     dimMult = [1, 1, 1, 1, 1, 1, 1, 1];
@@ -266,7 +266,7 @@ function galaxy() {
     tickCost = 1000;
     dimShifts = 0;
     dimBoostReq = 10;
-    galaxyReq += 30;
+    galaxyReq += 10;
     galaxies++;
   }
 }
